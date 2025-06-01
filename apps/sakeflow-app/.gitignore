@@ -1,0 +1,54 @@
+# Dart & Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+generated_plugin_registrant.dart
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Flutter platform folders
+android/.gradle/
+android/captures/
+android/local.properties
+android/.idea/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Pods/
+ios/.symlinks/
+ios/Runner.xcworkspace/
+ios/.idea/
+linux/flutter/ephemeral/
+macos/Flutter/ephemeral/
+windows/flutter/ephemeral/
+
+# Build outputs
+build/
+**/build/
+*.lock
+
+# Firebase/GoogleService
+ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
+
+# Cache and history
+cache/
+history/*/*
+!history/*/history.config
+!history/*/olive_config.json
+
+# その他
+coverage/
+*.log
