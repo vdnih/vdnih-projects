@@ -2,20 +2,18 @@ import { Metadata } from 'next';
 import { getDetail } from '@/libs/microcms';
 import Article from '@/components/Article';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams: {
-    dk: string;
-  };
-};
+// Next.js 15の型定義に合わせる
+type ArticlePageProps = {
+  params: { slug: string };
+  searchParams: Record<string, string | string[] | undefined>;
+}
 
 export const revalidate = 60;
 
-export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: ArticlePageProps): Promise<Metadata> {
+  const draftKey = typeof searchParams.dk === 'string' ? searchParams.dk : undefined;
   const data = await getDetail(params.slug, {
-    draftKey: searchParams.dk,
+    draftKey,
   });
 
   return {
@@ -24,14 +22,15 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     openGraph: {
       title: data.title,
       description: data.description,
-      images: [data?.thumbnail?.url || ''],
+      images: data?.thumbnail?.url ? [data.thumbnail.url] : [],
     },
   };
 }
 
-export default async function Page({ params, searchParams }: Props) {
+export default async function Page({ params, searchParams }: ArticlePageProps) {
+  const draftKey = typeof searchParams.dk === 'string' ? searchParams.dk : undefined;
   const data = await getDetail(params.slug, {
-    draftKey: searchParams.dk,
+    draftKey,
   });
 
   return <Article data={data} />;
