@@ -92,3 +92,88 @@
 [debug] [2025-08-11T10:36:35.735Z] Error: ENOENT: no such file or directory, open '/Users/rozaki/vdnih-projects/apps/kekkonbu/.next/export-marker.json'
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2025-08-11T13:39:53.148Z] ----------------------------------------------------------------------
+[debug] [2025-08-11T13:39:53.153Z] Command:       /Users/rozaki/.nvm/versions/node/v22.15.0/bin/node /Users/rozaki/.nvm/versions/node/v22.15.0/bin/firebase deploy --only hosting:kekkonbu
+[debug] [2025-08-11T13:39:53.153Z] CLI Version:   14.12.0
+[debug] [2025-08-11T13:39:53.153Z] Platform:      darwin
+[debug] [2025-08-11T13:39:53.153Z] Node Version:  v22.15.0
+[debug] [2025-08-11T13:39:53.154Z] Time:          Mon Aug 11 2025 22:39:53 GMT+0900 (日本標準時)
+[debug] [2025-08-11T13:39:53.154Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-11T13:39:53.248Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-11T13:39:53.249Z] > authorizing via signed-in user (rozaki320@gmail.com)
+[debug] [2025-08-11T13:39:53.249Z] [iam] checking project vdnih-projects for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-08-11T13:39:53.249Z] Checked if tokens are valid: false, expires at: 1754911562775
+[debug] [2025-08-11T13:39:53.249Z] Checked if tokens are valid: false, expires at: 1754911562775
+[debug] [2025-08-11T13:39:53.250Z] > refreshing access token with scopes: []
+[debug] [2025-08-11T13:39:53.250Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-11T13:39:53.251Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-11T13:39:53.483Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-11T13:39:53.483Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-11T13:39:53.500Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vdnih-projects:testIamPermissions [none]
+[debug] [2025-08-11T13:39:53.500Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vdnih-projects:testIamPermissions x-goog-quota-user=projects/vdnih-projects
+[debug] [2025-08-11T13:39:53.500Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vdnih-projects:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-11T13:39:54.191Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vdnih-projects:testIamPermissions 200
+[debug] [2025-08-11T13:39:54.192Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vdnih-projects:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-11T13:39:54.193Z] Checked if tokens are valid: true, expires at: 1754923192483
+[debug] [2025-08-11T13:39:54.193Z] Checked if tokens are valid: true, expires at: 1754923192483
+[debug] [2025-08-11T13:39:54.194Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vdnih-projects [none]
+[debug] [2025-08-11T13:39:54.554Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vdnih-projects 200
+[debug] [2025-08-11T13:39:54.555Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vdnih-projects {"projectId":"vdnih-projects","projectNumber":"697303186475","displayName":"vdnih-projects","name":"projects/vdnih-projects","resources":{"hostingSite":"vdnih-projects"},"state":"ACTIVE","etag":"1_b464b646-21b0-44e1-8b0d-0460003df9a9"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-08-11T13:39:57.327Z] Checked if tokens are valid: true, expires at: 1754923192483
+[debug] [2025-08-11T13:39:57.327Z] Checked if tokens are valid: true, expires at: 1754923192483
+[debug] [2025-08-11T13:39:57.327Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/vdnih-projects/sites/vdnih-projects [none]
+[debug] [2025-08-11T13:39:58.028Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/vdnih-projects/sites/vdnih-projects 200
+[debug] [2025-08-11T13:39:58.028Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/vdnih-projects/sites/vdnih-projects {"name":"projects/vdnih-projects/sites/vdnih-projects","defaultUrl":"https://vdnih-projects.web.app","type":"DEFAULT_SITE"}
+[info]    ▲ Next.js 15.4.6
+
+[info]    - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully in 2000ms
+
+[info]    Skipping validation of types
+
+[info]    Linting ...
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/6) ...
+
+[info]    Generating static pages (1/6) 
+
+[info]    Generating static pages (2/6) 
+
+[info] Failed to fetch category list: Error: fetch API response status: 404
+    at <unknown> (.next/server/chunks/189.js:1:191351)
+    at Object.next (.next/server/chunks/189.js:1:189346)
+    at k (.next/server/chunks/189.js:1:186606)
+    at g (.next/server/chunks/189.js:1:186803)
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: fetch API response status: 404
+    at <unknown> (.next/server/chunks/189.js:1:191351)
+    at Object.next (.next/server/chunks/189.js:1:189346)
+    at k (.next/server/chunks/189.js:1:186606)
+    at g (.next/server/chunks/189.js:1:186803) {
+  digest: '2870053628'
+}
+Export encountered an error on /_not-found/page: /_not-found, exiting the build.
+
+[info]  ⨯ Next.js build worker exited with code: 1 and signal: null
+
+[debug] [2025-08-11T13:40:07.363Z] Error: ENOENT: no such file or directory, open '/Users/rozaki/vdnih-projects/apps/kekkonbu/.next/export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
