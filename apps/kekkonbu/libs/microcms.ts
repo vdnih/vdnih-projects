@@ -33,23 +33,27 @@ export type Blog = {
 
 export type Article = Blog & MicroCMSContentId & MicroCMSDate;
 
-if (!process.env.MICROCMS_SERVICE_DOMAIN) {
-  throw new Error('MICROCMS_SERVICE_DOMAIN is required');
-}
-
-if (!process.env.MICROCMS_API_KEY) {
-  throw new Error('MICROCMS_API_KEY is required');
-}
-
 // Initialize Client SDK.
 export const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
-  apiKey: process.env.MICROCMS_API_KEY,
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN || '',
+  apiKey: process.env.MICROCMS_API_KEY || '',
 });
+
+// 環境変数のチェックは実際にAPIを呼び出す関数で行う
+const checkEnvVars = () => {
+  if (!process.env.MICROCMS_SERVICE_DOMAIN) {
+    throw new Error('MICROCMS_SERVICE_DOMAIN is required');
+  }
+  
+  if (!process.env.MICROCMS_API_KEY) {
+    throw new Error('MICROCMS_API_KEY is required');
+  }
+};
 
 // ブログ一覧を取得
 export const getList = async (queries?: MicroCMSQueries) => {
   try {
+    checkEnvVars();
     const listData = await client.getList<Blog>({
       endpoint: 'blogs',
       queries,
@@ -64,6 +68,7 @@ export const getList = async (queries?: MicroCMSQueries) => {
 // ブログの詳細を取得
 export const getDetail = async (contentId: string, queries?: MicroCMSQueries) => {
   try {
+    checkEnvVars();
     const detailData = await client.getListDetail<Blog>({
       endpoint: 'blogs',
       contentId,
@@ -79,6 +84,7 @@ export const getDetail = async (contentId: string, queries?: MicroCMSQueries) =>
 // カテゴリ一覧を取得
 export const getCategoryList = async () => {
   try {
+    checkEnvVars();
     const listData = await client.getList<Category>({
       endpoint: 'categories',
     });
@@ -92,6 +98,7 @@ export const getCategoryList = async () => {
 // カテゴリの詳細を取得
 export const getCategory = async (categoryId: string) => {
   try {
+    checkEnvVars();
     const categoryData = await client.get({
       endpoint: 'categories',
       contentId: categoryId,

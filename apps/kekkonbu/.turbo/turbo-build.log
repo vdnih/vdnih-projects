@@ -1,0 +1,39 @@
+
+> kekkonbu@0.1.0 build
+> next build
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/rozaki/vdnih-projects/package-lock.json.
+   Consider removing the lockfiles at:
+   * /Users/rozaki/vdnih-projects/apps/kekkonbu/package-lock.json
+
+   ▲ Next.js 15.4.6
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 0ms
+
+./libs/utils.ts
+Attempted import error: 'cheerio' does not contain a default export (imported as 'cheerio').
+
+Import trace for requested module:
+./libs/utils.ts
+./components/Article/index.tsx
+./app/articles/[slug]/page.tsx
+
+ ✓ Compiled successfully in 0ms
+   Linting and checking validity of types ...
+Failed to compile.
+
+app/articles/[slug]/page.tsx
+Type error: Type 'Props' does not satisfy the constraint 'PageProps'.
+  Types of property 'params' are incompatible.
+    Type '{ slug: string; }' is missing the following properties from type 'Promise<any>': then, catch, finally, [Symbol.toStringTag]
+
+Next.js build worker exited with code: 1 and signal: null
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /Users/rozaki/vdnih-projects/apps/kekkonbu
+npm error workspace kekkonbu@0.1.0
+npm error location /Users/rozaki/vdnih-projects/apps/kekkonbu
+npm error command failed
+npm error command sh -c next build
