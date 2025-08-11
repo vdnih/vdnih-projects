@@ -1,0 +1,14 @@
+{
+  "hosting": [
+    {
+      "target": "kekkonbu",
+      "source": "apps/kekkonbu",
+      "frameworksBackend": { "region": "asia-northeast1" }
+    },
+    {
+      "target": "sakeflow",
+      "source": "apps/sakeflow",
+      "frameworksBackend": { "region": "asia-northeast1" }
+    }
+  ]
+}

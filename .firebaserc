@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "vdnih-projects"
+  },
+  "targets": {
+    "vdnih-projects": {
+      "hosting": {
+        "kekkonbu": [
+          "kekkonbu-blog"
+        ],
+        "sakeflow": [
+          "sakeflow-blog"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
