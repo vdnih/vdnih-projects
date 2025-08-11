@@ -28,6 +28,13 @@ export default async function RootLayout({ children }: Props) {
   const categories = await getCategoryList();
   return (
     <html lang="ja">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3598027223624482"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body>
         <Header />
         <Nav categories={categories.contents} />
