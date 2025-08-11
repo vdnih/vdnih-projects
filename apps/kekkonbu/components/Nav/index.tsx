@@ -11,6 +11,7 @@ type Props = {
 export default function Nav({ categories }: Props) {
   return (
     <nav className={styles.nav}>
+      <h1 className={styles.title}>結婚部</h1>
       <Suspense fallback={null}>
         <SearchField />
       </Suspense>
