@@ -1,5 +1,10 @@
 {
     "$schema": "https://turbo.build/schema.json",
+    "globalEnv": [
+        "MICROCMS_SERVICE_DOMAIN",
+        "MICROCMS_API_KEY",
+        "BASE_URL"
+    ],
     "tasks": {
         "build": {
             "dependsOn": [
@@ -7,11 +12,22 @@
             ],
             "outputs": [
                 "dist/**",
-                "build/**"
+                "build/**",
+                ".next/**"
+            ],
+            "env": [
+                "MICROCMS_SERVICE_DOMAIN",
+                "MICROCMS_API_KEY",
+                "BASE_URL"
             ]
         },
         "dev": {
-            "cache": false
+            "cache": false,
+            "env": [
+                "MICROCMS_SERVICE_DOMAIN",
+                "MICROCMS_API_KEY",
+                "BASE_URL"
+            ]
         },
         "docs": {
             "outputs": []
