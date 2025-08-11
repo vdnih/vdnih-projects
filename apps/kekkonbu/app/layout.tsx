@@ -8,11 +8,11 @@ import styles from './layout.module.css';
 
 export const metadata = {
   metadataBase: new URL(process.env.BASE_URL || 'http://localhost:3000'),
-  title: 'Simple Blog',
-  description: 'A simple blog presented by microCMS',
+  title: '結婚部',
+  description: '婚約から海外挙式までの実体験とChatGPT活用法で、理想の結婚準備を効率化するブログ。',
   openGraph: {
-    title: 'Simple Blog',
-    description: 'A simple blog presented by microCMS',
+    title: '結婚部',
+    description: '婚約から海外挙式までの実体験とChatGPT活用法で、理想の結婚準備を効率化するブログ。',
     images: '/ogp.png',
   },
   alternates: {
