@@ -1,24 +1,8 @@
 {
-  "hosting": [
-    {
-      "target": "kekkonbu",
-      "source": "apps/kekkonbu",
-      "frameworksBackend": {
-        "region": "asia-northeast1"
-      }
-    },
-    {
-      "target": "sakeflow",
-      "source": "apps/sakeflow",
-      "frameworksBackend": {
-        "region": "asia-northeast1"
-      }
-    }
-  ],
   "apphosting": [
     {
       "backendId": "kekkonbu-backend",
-      "rootDir": "/",
+      "rootDir": "/apps/kekkonbu",
       "ignore": [
         "node_modules",
         ".git",
@@ -29,7 +13,7 @@
     },
     {
       "backendId": "sakeflow-backend",
-      "rootDir": "/",
+      "rootDir": "/apps/sakeflow-site",
       "ignore": [
         "node_modules",
         ".git",
