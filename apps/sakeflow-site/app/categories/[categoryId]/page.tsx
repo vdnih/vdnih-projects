@@ -5,13 +5,13 @@ import Pagination from '@/components/Pagination';
 import ArticleList from '@/components/ArticleList';
 
 type Props = {
-  params: {
+  params: Promise<{
     categoryId: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { categoryId } = params;
+  const { categoryId } = await params;
   const category = await getCategory(categoryId);
   return {
     title: category.name,
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const { categoryId } = params;
+  const { categoryId } = await params;
   const data = await getList({
     limit: LIMIT,
     filters: `category[equals]${categoryId}`,

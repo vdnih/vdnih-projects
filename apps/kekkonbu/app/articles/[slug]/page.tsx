@@ -4,15 +4,17 @@ import Article from '@/components/Article';
 
 // Next.js 15の型定義に合わせる
 type ArticlePageProps = {
-  params: { slug: string };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params, searchParams }: ArticlePageProps): Promise<Metadata> {
-  const draftKey = typeof searchParams.dk === 'string' ? searchParams.dk : undefined;
-  const data = await getDetail(params.slug, {
+  const { slug } = await params;
+  const search = await searchParams;
+  const draftKey = typeof search.dk === 'string' ? search.dk : undefined;
+  const data = await getDetail(slug, {
     draftKey,
   });
 
@@ -28,8 +30,10 @@ export async function generateMetadata({ params, searchParams }: ArticlePageProp
 }
 
 export default async function Page({ params, searchParams }: ArticlePageProps) {
-  const draftKey = typeof searchParams.dk === 'string' ? searchParams.dk : undefined;
-  const data = await getDetail(params.slug, {
+  const { slug } = await params;
+  const search = await searchParams;
+  const draftKey = typeof search.dk === 'string' ? search.dk : undefined;
+  const data = await getDetail(slug, {
     draftKey,
   });
 
