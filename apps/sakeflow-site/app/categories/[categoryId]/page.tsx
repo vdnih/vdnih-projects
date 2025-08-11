@@ -5,14 +5,12 @@ import Pagination from '@/components/Pagination';
 import ArticleList from '@/components/ArticleList';
 
 type Props = {
-  params: Promise<{
+  params: {
     categoryId: string;
-    name: string;
-  }>;
+  };
 };
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { categoryId } = params;
   const category = await getCategory(categoryId);
   return {
@@ -21,19 +19,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title: category.name,
     },
     alternates: {
-      canonical: `/categories/${params.categoryId}`,
+      canonical: `/categories/${categoryId}`,
     },
   };
 }
 
-export default async function Page(props: Props) {
-  const params = await props.params;
+export default async function Page({ params }: Props) {
   const { categoryId } = params;
   const data = await getList({
     limit: LIMIT,
-    filters: `categories[contains]${categoryId}`,
+    filters: `category[equals]${categoryId}`,
   });
-  const category = await getCategory(categoryId);
   return (
     <>
       <ArticleList articles={data.contents} />
@@ -41,3 +37,4 @@ export default async function Page(props: Props) {
     </>
   );
 }
+
