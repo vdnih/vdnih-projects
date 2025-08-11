@@ -3,19 +3,21 @@ import { getDetail } from '@/libs/microcms';
 import Article from '@/components/Article';
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
-  searchParams: {
-    dk: string;
-  };
+  }>;
+  searchParams: Promise<{
+    dk?: string;
+  }>;
 };
 
 export const revalidate = 60;
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
-  const data = await getDetail(params.slug, {
-    draftKey: searchParams.dk,
+  const { slug } = await params;
+  const { dk } = await searchParams;
+  const data = await getDetail(slug, {
+    draftKey: dk,
   });
 
   return {
@@ -30,8 +32,10 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  const data = await getDetail(params.slug, {
-    draftKey: searchParams.dk,
+  const { slug } = await params;
+  const { dk } = await searchParams;
+  const data = await getDetail(slug, {
+    draftKey: dk,
   });
 
   return <Article data={data} />;

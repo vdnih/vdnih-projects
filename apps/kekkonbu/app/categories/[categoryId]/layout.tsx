@@ -3,13 +3,13 @@ import styles from './layout.module.css';
 
 type Props = {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     categoryId: string;
-  };
+  }>;
 };
 
 export default async function CategoryLayout({ children, params }: Props) {
-  const { categoryId } = params;
+  const { categoryId } = await params;
   const category = await getCategory(categoryId);
   return (
     <div>
