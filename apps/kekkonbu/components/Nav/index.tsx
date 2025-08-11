@@ -1,6 +1,7 @@
 import { Category } from '@/libs/microcms';
 import CategoryList from '@/components/CategoryList';
 import SearchField from '@/components/SearchField';
+import { Suspense } from 'react';
 import styles from './index.module.css';
 
 type Props = {
@@ -10,7 +11,9 @@ type Props = {
 export default function Nav({ categories }: Props) {
   return (
     <nav className={styles.nav}>
-      <SearchField />
+      <Suspense fallback={null}>
+        <SearchField />
+      </Suspense>
       <div className={styles.categories}>
         {categories.map((category) => (
           <CategoryList key={category.id} category={category} />
