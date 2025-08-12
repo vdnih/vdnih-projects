@@ -5,7 +5,7 @@ import type {
   MicroCMSDate,
   MicroCMSContentId,
 } from 'microcms-js-sdk';
-import { notFound } from 'next/navigation';
+import { unstable_noStore as noStore } from 'next/cache';
 
 // カテゴリの型定義
 export type Category = {
@@ -18,8 +18,7 @@ export type Writer = {
   name: string;
   profile: string;
   image?: MicroCMSImage;
-} & MicroCMSContentId &
-  MicroCMSDate;
+} & MicroCMSContentId & MicroCMSDate;
 
 // ブログの型定義
 export type Blog = {
@@ -33,27 +32,37 @@ export type Blog = {
 
 export type Article = Blog & MicroCMSContentId & MicroCMSDate;
 
-// Initialize Client SDK.
-export const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN || '',
-  apiKey: process.env.MICROCMS_API_KEY || '',
-});
+type MicroCMSClient = ReturnType<typeof createClient>;
 
-// 環境変数のチェックは実際にAPIを呼び出す関数で行う
-const checkEnvVars = () => {
-  if (!process.env.MICROCMS_SERVICE_DOMAIN) {
+const createStubClient = (): MicroCMSClient => ({
+  get: async () => null,
+  getList: async () => ({ contents: [] }),
+  getListDetail: async () => null,
+} as unknown as MicroCMSClient);
+
+export const getClient = (): MicroCMSClient => {
+  if (process.env.DISABLE_CMS === '1') {
+    return createStubClient();
+  }
+
+  const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN;
+  const apiKey = process.env.MICROCMS_API_KEY;
+
+  if (!serviceDomain) {
     throw new Error('MICROCMS_SERVICE_DOMAIN is required');
   }
-  
-  if (!process.env.MICROCMS_API_KEY) {
+  if (!apiKey) {
     throw new Error('MICROCMS_API_KEY is required');
   }
+
+  return createClient({ serviceDomain, apiKey });
 };
 
 // ブログ一覧を取得
 export const getList = async (queries?: MicroCMSQueries) => {
+  noStore();
+  const client = getClient();
   try {
-    checkEnvVars();
     const listData = await client.getList<Blog>({
       endpoint: 'blogs',
       queries,
@@ -61,14 +70,15 @@ export const getList = async (queries?: MicroCMSQueries) => {
     return listData;
   } catch (error) {
     console.error('Failed to fetch blog list:', error);
-    throw error;
+    return { contents: [] } as any;
   }
 };
 
 // ブログの詳細を取得
 export const getDetail = async (contentId: string, queries?: MicroCMSQueries) => {
+  noStore();
+  const client = getClient();
   try {
-    checkEnvVars();
     const detailData = await client.getListDetail<Blog>({
       endpoint: 'blogs',
       contentId,
@@ -77,28 +87,30 @@ export const getDetail = async (contentId: string, queries?: MicroCMSQueries) =>
     return detailData;
   } catch (error) {
     console.error('Failed to fetch blog detail:', error);
-    throw error;
+    return {} as Article;
   }
 };
 
 // カテゴリ一覧を取得
 export const getCategoryList = async () => {
+  noStore();
+  const client = getClient();
   try {
-    checkEnvVars();
     const listData = await client.getList<Category>({
       endpoint: 'categories',
     });
     return listData;
   } catch (error) {
     console.error('Failed to fetch category list:', error);
-    throw error;
+    return { contents: [] } as any;
   }
 };
 
 // カテゴリの詳細を取得
 export const getCategory = async (categoryId: string) => {
+  noStore();
+  const client = getClient();
   try {
-    checkEnvVars();
     const categoryData = await client.get({
       endpoint: 'categories',
       contentId: categoryId,
@@ -106,6 +118,6 @@ export const getCategory = async (categoryId: string) => {
     return categoryData;
   } catch (error) {
     console.error('Failed to fetch category:', error);
-    throw error;
+    return {} as any;
   }
 };
