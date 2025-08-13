@@ -3,7 +3,8 @@
     "globalEnv": [
         "MICROCMS_SERVICE_DOMAIN",
         "MICROCMS_API_KEY",
-        "BASE_URL"
+        "BASE_URL",
+        "DISABLE_CMS"
     ],
     "tasks": {
         "build": {
@@ -18,7 +19,8 @@
             "env": [
                 "MICROCMS_SERVICE_DOMAIN",
                 "MICROCMS_API_KEY",
-                "BASE_URL"
+                "BASE_URL",
+                "DISABLE_CMS"
             ]
         },
         "dev": {
@@ -26,7 +28,8 @@
             "env": [
                 "MICROCMS_SERVICE_DOMAIN",
                 "MICROCMS_API_KEY",
-                "BASE_URL"
+                "BASE_URL",
+                "DISABLE_CMS"
             ]
         },
         "docs": {
