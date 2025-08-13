@@ -14,6 +14,18 @@
   margin: 0;
 }
 
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.menuItem {
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+}
+
 .categories {
   display: flex; /* 横並びにする */
   flex-wrap: wrap; /* 必要に応じて折り返し */
