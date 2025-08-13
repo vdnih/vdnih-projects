@@ -7,12 +7,12 @@ type Props = {
   // hasLink?: boolean;
 };
 
-export default function CategoryList({ category}: Props) {
+export default function CategoryList({ category }: Props) {
   if (!category) return null;
 
   return (
     <div className={styles.tags}>
-      <CategoryListItem category={category}/>
+      <CategoryListItem category={category} />
     </div>
   );
 }

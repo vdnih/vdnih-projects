@@ -11,7 +11,8 @@ import { unstable_noStore as noStore } from 'next/cache';
 export type Category = {
   name: string;
   value: string;
-} & MicroCMSContentId & MicroCMSDate;
+} & MicroCMSContentId &
+  MicroCMSDate;
 
 // ライターの型定義
 export type Writer = {
@@ -51,11 +52,10 @@ export const getClient = (): MicroCMSClient => {
   if (!serviceDomain) {
     throw new Error('MICROCMS_SERVICE_DOMAIN is required');
   }
-  if (!apiKey) {
+
+  if (!process.env.MICROCMS_API_KEY) {
     throw new Error('MICROCMS_API_KEY is required');
   }
-
-  return createClient({ serviceDomain, apiKey });
 };
 
 // ブログ一覧を取得
@@ -121,3 +121,4 @@ export const getCategory = async (categoryId: string) => {
     return {} as any;
   }
 };
+

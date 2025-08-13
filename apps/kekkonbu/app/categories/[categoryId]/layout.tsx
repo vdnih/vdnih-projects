@@ -13,9 +13,7 @@ export default async function CategoryLayout({ children, params }: Props) {
   const category = await getCategory(categoryId);
   return (
     <div>
-      <p className={styles.title}>
-        {category.name} の記事一覧
-      </p>
+      <p className={styles.title}>{category.name} の記事一覧</p>
       <div>{children}</div>
     </div>
   );

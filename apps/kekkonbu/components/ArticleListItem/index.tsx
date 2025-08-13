@@ -44,9 +44,10 @@ export default function ArticleListItem({ article }: Props) {
         <dl className={styles.content}>
           <dt className={styles.title}>{article.title}</dt>
           <dd>
-            <CategoryList category={article.category} 
-            // hasLink={true}
-             />
+            <CategoryList
+              category={article.category}
+              // hasLink={true}
+            />
           </dd>
           <dd className={styles.date}>
             <PublishedDate date={article.publishedAt || article.createdAt} />
