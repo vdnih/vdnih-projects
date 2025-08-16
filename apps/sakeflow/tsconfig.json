@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "brand/config": ["../../packages/brand-kekkonbu/config.ts"],
+      "brand/config": ["../../packages/brand-sakeflow/config.ts"],
       "@core-web/*": ["../../packages/core-web/src/*"],
       "@core-cms/*": ["../../packages/core-cms/src/*"]
     }
