@@ -1,0 +1,6 @@
+{
+  "name": "brand-sakeflow",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "config.ts"
+}
